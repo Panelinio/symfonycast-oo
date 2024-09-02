@@ -6,7 +6,7 @@ class BattleManager{
      *
      * @return BattleResult
      */
-    public function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
+    public function battle(AbstraShip $ship1, $ship1Quantity, AbstraShip $ship2, $ship2Quantity)
     {
         $ship1Health = $ship1->getStrength() * $ship1Quantity;
         $ship2Health = $ship2->getStrength() * $ship2Quantity;
@@ -49,7 +49,7 @@ class BattleManager{
         }
         return new BattleResult($winningShip, $losingShip, $usedJediPowers);
     }
-    private function didJediDestroyShipUsingTheForce(Ship $ship)
+    private function didJediDestroyShipUsingTheForce(AbstraShip $ship)
     {
         $jediHeroProbability = $ship->getJediFactor() / 100;
         return mt_rand(1, 100) <= ($jediHeroProbability*100);
