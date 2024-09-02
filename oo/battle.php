@@ -69,14 +69,14 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
             <div class="result-box center-block">
                 <h3 class="text-center audiowide">
                     Winner:
-                    <?php if ($battleResult->getWinningShip()): ?>
+                    <?php if ($battleResult->isThereAWinner()): ?>
                         <?php echo $battleResult->getWinningShip()->getName(); ?>
                     <?php else: ?>
                         Nobody
                     <?php endif; ?>
                 </h3>
                 <p class="text-center">
-                    <?php if ($battleResult->getWinningShip() == null): ?>
+                    <?php if (!$battleResult->isThereAWinner()): ?>
                         Both ships destroyed each other in an epic battle to the end.
                     <?php else: ?>
                         The <?php echo $battleResult->getWinningShip()->getName(); ?>
@@ -87,6 +87,13 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
                         <?php endif; ?>
                     <?php endif; ?>
                 </p>
+                <h3>Remaining Strength</h3>
+                <dl class="dl-horizontal">
+                    <dt><?php echo $ship1->getName(); ?></dt>
+                    <dd><?php echo $ship1->getStrength(); ?></dd>
+                    <dt><?php echo $ship2->getName(); ?></dt>
+                    <dd><?php echo $ship2->getStrength(); ?></dd>
+                </dl>
             </div>
             <a href="/index.php"><p class="text-center"><i class="fa fa-undo"></i> Battle again</p></a>
         
