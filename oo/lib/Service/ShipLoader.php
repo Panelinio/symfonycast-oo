@@ -2,13 +2,14 @@
 
 namespace Service;
 
-use Model\AbstraShip;
 use Model\RebelShip;
 use Model\Ship;
+use Model\AbstraShip;
 
 class ShipLoader
 {
     private $shipStorage;
+
     public function __construct(ShipStorageInterface $shipStorage)
     {
         $this->shipStorage = $shipStorage;
@@ -19,10 +20,10 @@ class ShipLoader
      */
     public function getShips()
     {
-        $shipsData = $this->shipStorage->fetchAllShipsData();
-        //var_dump($shipsData);die;
-
         $ships = array();
+
+        $shipsData = $this->queryForShips();
+
         foreach ($shipsData as $shipData) {
             $ships[] = $this->createShipFromData($shipData);
         }
@@ -34,12 +35,10 @@ class ShipLoader
      * @param $id
      * @return AbstraShip
      */
-
     public function findOneById($id)
     {
         $shipArray = $this->shipStorage->fetchSingleShipData($id);
 
-        //var_dump($shipArray);die;
         return $this->createShipFromData($shipArray);
     }
 
@@ -51,9 +50,22 @@ class ShipLoader
             $ship = new Ship($shipData['name']);
             $ship->setJediFactor($shipData['jedi_factor']);
         }
+
         $ship->setId($shipData['id']);
         $ship->setWeaponPower($shipData['weapon_power']);
         $ship->setStrength($shipData['strength']);
+
         return $ship;
+    }
+
+    private function queryForShips()
+    {
+        try {
+            return $this->shipStorage->fetchAllShipsData();
+        } catch (\Exception $e) {
+            trigger_error('Exception! '.$e->getMessage());
+            // if all else fails, just return an empty array
+            return [];
+        }
     }
 }

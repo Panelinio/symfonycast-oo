@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class rebelShip extends AbstraShip{
+class RebelShip extends AbstraShip{
     public function getFavoriteJedi(){
         $coolJedis = array('Yoda', 'Ben Kenobi');
         $key = array_rand($coolJedis);
