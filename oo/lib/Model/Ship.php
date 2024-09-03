@@ -28,4 +28,9 @@ class Ship extends AbstraShip
     {
         return !$this->underRepair;
     }
+
+    public function getType()
+    {
+        return 'Empire';
+    }
 }

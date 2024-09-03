@@ -6,24 +6,22 @@ abstract class AbstraShip{
     private $name;
     private $weaponPower = 0;
     private $strength = 0;
-    private $underRepair;
-
     /**
      * @return integer
      */
     abstract public function getJediFactor();
-
+    /**
+     * @return string
+     */
     abstract public function getType();
-
+    /**
+     * @return bool
+     */
+    abstract public function isFunctional();
     public function __construct($name)
     {
         $this->name = $name;
-        // randomly put this ship under repair
-        $this->underRepair = mt_rand(1, 100) < 30;
     }
-
-    abstract public function isFunctional();
-
     public function sayHello()
     {
         echo 'Hello!';
@@ -63,12 +61,13 @@ abstract class AbstraShip{
             );
         }
     }
-
     public function doesGivenShipHaveMoreStrength($givenShip)
     {
         return $givenShip->strength > $this->strength;
     }
-
+    /**
+     * @return int
+     */
     public function getWeaponPower()
     {
         return $this->weaponPower;
