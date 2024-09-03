@@ -1,5 +1,10 @@
 <?php
 
+namespace Service;
+
+use Model\BattleResult;
+use Model\AbstraShip;
+
 class BattleManager{
     //Normal battle
     const TYPE_NORMAL = 'type_normal';

@@ -1,5 +1,7 @@
 <?php
 
+namespace Model;
+
 class rebelShip extends AbstraShip{
     public function getFavoriteJedi(){
         $coolJedis = array('Yoda', 'Ben Kenobi');

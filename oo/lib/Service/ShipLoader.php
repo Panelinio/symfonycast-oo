@@ -1,7 +1,13 @@
 <?php
 
-class ShipLoader{
+namespace Service;
 
+use Model\AbstraShip;
+use Model\RebelShip;
+use Model\Ship;
+
+class ShipLoader
+{
     private $shipStorage;
     public function __construct(ShipStorageInterface $shipStorage)
     {

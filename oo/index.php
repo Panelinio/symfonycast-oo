@@ -1,6 +1,10 @@
 <?php
 require __DIR__.'/bootstrap.php';
 
+use Service\BattleManager;
+use Service\Container;
+use Model\BrokenShip;
+
 $container = new Container($configuration);
 $shipLoader = $container->getShipLoader();
 $ships = $shipLoader->getShips();
