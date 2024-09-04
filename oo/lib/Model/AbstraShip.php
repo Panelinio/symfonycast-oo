@@ -102,4 +102,9 @@ abstract class AbstraShip{
     {
         $this->id = $id;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

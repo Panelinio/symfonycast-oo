@@ -18,16 +18,16 @@ class JsonFileShipStorage implements ShipStorageInterface
         return json_decode($jsonContents, true);
     }
 
-    public function fetchSingleShipData($id)
+    public function fetchSingleShipData($id): ?array
     {
         $ships = $this->fetchAllShipsData();
-
+    
         foreach ($ships as $ship) {
             if ($ship['id'] == $id) {
                 return $ship;
             }
         }
-
+    
         return null;
     }
 }
