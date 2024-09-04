@@ -2,6 +2,7 @@
 
 namespace Service;
 
+use Model\BountyHunterShip;
 use Model\RebelShip;
 use Model\Ship;
 use Model\AbstraShip;
@@ -28,6 +29,8 @@ class ShipLoader
         foreach ($shipsData as $shipData) {
             $ships[] = $this->createShipFromData($shipData);
         }
+
+        $ships[] = new BountyHunterShip('Slave I');
 
         return new ShipCollection($ships);
     }
